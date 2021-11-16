@@ -6,7 +6,7 @@ import datetime
 # copy your generate_comment functions from the madlibs assignment here
 
 # connect to reddit 
-reddit = praw.Reddit('bot')
+reddit = praw.Reddit('bot1')
 
 # connect to the debate thread
 reddit_debate_url = ''
@@ -77,13 +77,13 @@ while True:
         # and the .reply() function to post it to reddit;
         # a top level comment is created when you reply to a post instead of a message
         
-    else:
+    # else:  DELETE THE '#' LATER!!! IT'S JUST CAUSING ERRORS RN SO I ADDED IT -Past Adrian
         # FIXME (task 3): filter the not_my_comments list to also remove comments that 
         # you've already replied to
         # HINT:
         # there are many ways to accomplish this, but my solution uses two nested for loops
         # the outer for loop loops over not_my_comments,
-        # and the inner for loop loops over all the replies of the current comment from the outer loop,
+        # and the inner for loop loops over al the replies of the current comment from the outer loop,
         # and then an if statement checks whether the comment is authored by you or not
         comments_without_replies = []
         # HINT:
