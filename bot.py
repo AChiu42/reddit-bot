@@ -7,7 +7,7 @@ import time
 # copy your generate_comment functions from the madlibs assignment here
 
 reddit = praw.Reddit('bot1')
-url = "https://old.reddit.com/r/BotTown/comments/qzbz12/test_text_postjust_ignore_for_somebottomtext/?sort=new"
+url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/"
 submission = reddit.submission(url=url)
 
 
@@ -15,27 +15,27 @@ submission = reddit.submission(url=url)
 # CHANGE IT FROM THE MADLIBS LAB
 
 madlibs_1 = [
-    "[AMERICA] [MESSED UP] when we did not put [BERNIE] in the White House." " Did [NOBODY] see the way [HE] sits in a chair?",
+    "[BERNIE] needs to be put in the White House [IMMEDIATELY]." " There clearly have been many more [INEPT] and [USELESS] presidents before him, namely [TRUMP]?"
     ]
 
 madlibs_2 = [
-    "It is a [TRUE] [TRAGEDY] what [AMERICA] has turned into." " Why can't people be more more like [JEFF] or [ELON]?" " [EVERYONE] [LOVES] [BILLIONAIRES]."
+    "While it is a [TRUE] [TRAGEDY] what state [AMERICA] is in, this all could have easily been avoided by putting [BERNIE] in the Presidency." " [AMERICANS] need to understand that our country needs a strong leader, and Bernie is the one."
     ]
 
 madlibs_3 = [
-    "[BILLIONAIRES] have it [ROUGH]." " Imagine paying over a billion dollars [IN TAXES] and it still hardly affects your [WEALTH]." "What a [TRAGEDY]." " If [BERNIE] were [PRESIDENT], they would be paying MUCH MORE in taxes."
+    "[ELON], like the rest of the [BILLIONAIRES] get way too much [SLACK] from government taxes." " There need to be more [REPERCUSSIONS] for avoiding taxes." " With [BERNIE] at the helm, [AMERICA] will be led down the right path again."
     ]
 
 madlibs_4 = [
-    "[AMERICA] used to be a [SYMBOL] for the world." " Now it is just run by [CLOWNS] who are [INEPT] and out of touch with [AMERICANS]."
+    "In order to restore [AMERICA] to the [SYMBOL] for the world it [ONCE WAS], we must clear the way for [BERNIE] to become [PRESIDENT]." " The [CLOWNS] currently running [AMERICA] [CLEARLY] are too [INEPT] to remain in charge."
     ]
 
 madlibs_5 = [
-    "[AMERICA] [REQUIRES] dramatic change [IMMEDIATELY]." " [AMERICANS] dwell on the past too much when they really should be moving on from the [INEPT] [TRUMP]." " He does not deserve anymore attention than what he already gets."
+    "[BILLIONAIRES] are [DETRIMENTAL] to [SOCIETY]." " They accumulate [WEALTH] for themselves when they could be solving some of the [COUNTLESS] number of world problems like [HUNGER]."
     ]
 
 madlibs_6 = [
-    "How can [AMERICANS] be expected to be [UPSTANDING] [CITIZENS] when our [POLITICIANS] fight over decisions that hardly affect them?" " [EVERYONE] needs to relearn what democracy means and unite as one nation and one people, or else [AMERICA] will not be around for much longer."
+    "While it is certainly true that there are [ISSUES] in both [PARTIES], there are many people who [IGNORE] the [OBVIOUS] crimes committed by the [GOP]." " Instead, they attack [HEROES] like [BERNIE] who are trying to [SAVE] [AMERICA] from what will likely be an inevitable downfall."
 ]
 
 replacements = {
@@ -52,13 +52,13 @@ replacements = {
     'EVERYONE' : ['Everyone', 'All people', 'Americans'],
     'LOVE' : ['love', 'like', 'appreciate'],
     'BILLIONAIRES' : ['Billionaires', 'The rich folks', 'The top 1%'],
-    'PRESIDENT' : ['President', 'in office', 'The President', 'in the White House'],
+    'PRESIDENT' : ['President', 'Commander in Chief', 'The President', 'President of the United States'],
     'ROUGH' : ['rough', 'tough'],
     'IN TAXES' : ['in taxes', 'to the government', 'every year'],
-    'WEALTH' : ['wealth', 'net worth', 'spare tens of billions'],
+    'WEALTH' : ['wealth', 'vast sums of money', 'tens of billions'],
     'SYMBOL' : ['Beacon of Hope', 'symbol of peace and power', 'role model'],
     'CLOWNS' : ['clowns', 'fools'],
-    'INEPT' : ['inept', 'old', 'useless'],
+    'INEPT' : ['inept', 'useless', 'incapable'],
     'AMERICANS' : ['Americans', 'the American people', 'the people of this country', 'the everyday person'],
     'REQUIRES' : ['requires', 'needs', 'is desperate for'],
     'IMMEDIATELY' : ['immediately', 'at this instant', 'right now', 'as soon as possible'],
@@ -66,7 +66,21 @@ replacements = {
     'LOVES' : ['adores', 'loves', 'likes'],
     'UPSTANDING' : ['upstanding', 'model', 'good'],
     'CITIZENS' : ['citizens', 'people', 'Americans'],
-    'POLITICIANS' : ['politicians', "country's leaders", 'Representatives', 'Congressmen and Congresswomen']
+    'POLITICIANS' : ['politicians', "country's leaders", 'Representatives', 'Congressmen and Congresswomen'],
+    'SLACK' : ['slack', 'leeway', 'latitude'],
+    'REPERCUSSIONS' : ['repercussions', 'consequences', 'ramifications'],
+    'ONCE WAS' : ['once was', 'used to be', 'was formerly'],
+    'DETRIMENTAL' : ['a menace', 'detrimental', 'terrible'],
+    'SOCIETY' : ['society', 'America', 'American Society', 'the world'],
+    'COUNTLESS' : ['countless', 'numerous', 'endless'],
+    'HUNGER' : ['world hunger', 'poverty', 'disease', 'political turmoil'],
+    'ISSUES' : ['issues', 'problems', 'troubles', 'complications'],
+    'GOP' : ['GOP', 'Republicans', 'Republican Party'],
+    'PARTIES' : ['parties', 'political parties', 'sides of the aisle'],
+    'IGNORE' : ['ignore', 'turn a blind eye to', 'disregard'],
+    'OBVIOUS' : ['obvious', 'blatant', 'blatantly obvious', 'evident'],
+    'HEROES' : ['heroes', 'the people'],
+    'SAVE' : ['save', 'help', 'liberate', 'rescue', 'bail out']
     }
 
 all_sentences = [madlibs_1, madlibs_2, madlibs_3, madlibs_4, madlibs_5, madlibs_6]
@@ -110,7 +124,7 @@ def generate_comment():
 # while you are writing and debugging your code, 
 # you probably don't want it to run in an infinite loop;
 # you can change this while loop to an if statement to make the code run only once
-if True: # change IF TO WHILE LATER
+while True: # change IF TO WHILE LATER
 
     # printing the current time will help make the output messages more informative
     # since things on reddit vary with time
@@ -142,9 +156,12 @@ if True: # change IF TO WHILE LATER
     # and an if statement to check whether the comment is authored by you or not
     not_my_comments = []
     for comment in all_comments:
-        # print('comment.author =', comment.author)
-        if str(comment.author) != 'SomeBottomText':
-            not_my_comments.append(comment)
+        try:
+            if str(comment.author) != 'SomeBottomText':
+                not_my_comments.append(comment)
+        except AttributeError:
+            pass
+
     # HINT:
     # checking if this code is working is a bit more complicated than in the previous tasks;
     # reddit does not directly provide the number of comments in a submission
@@ -154,6 +171,7 @@ if True: # change IF TO WHILE LATER
     # you can use comments that you post manually while logged into your bot to know 
     # how many comments there should be. 
     print('len(not_my_comments)=',len(not_my_comments))
+    # print('not_my_comments=', not_my_comments)
 
     # if the length of your all_comments and not_my_comments lists are the same,
     # then that means you have not posted any comments in the current submission;
@@ -183,17 +201,25 @@ if True: # change IF TO WHILE LATER
         # the outer for loop loops over not_my_comments,
         # and the inner for loop loops over all the replies of the current comment from the outer loop,
         # and then an if statement checks whether the comment is authored by you or not
-        comments_without_replies = [] # FIX
+        comments_without_replies = []
         for comment in not_my_comments:
+            not_replied = True
             for reply in comment.replies:
-                if reply.author != 'SomeBottomText':
-                    comments_without_replies.append(reply)
+                try:
+                    if str(reply.author) == 'SomeBottomText':
+                        break
+                except NameError:
+                    pass
+                except AttributeError:
+                    pass
+            if not_replied:
+                comments_without_replies.append(comment)
             
         # HINT:
         # this is the most difficult of the tasks,
         # and so you will have to be careful to check that this code is in fact working correctly
         print('len(comments_without_replies)=',len(comments_without_replies))
-
+        # print('comments_without_replies=', comments_without_replies)
         # FIXME (task 4): randomly select a comment from the comments_without_replies list,
         # and reply to that comment
         #
@@ -205,21 +231,25 @@ if True: # change IF TO WHILE LATER
         # pass
         r = random.choice(comments_without_replies)
         text = generate_comment()
+        # print(r)
         try:
             r.reply(text)
             print('I made a reply!')
         except praw.exceptions.APIEXCEPTION:
             print('Deleted comment - not replying')
             pass
+        except IndexError:
+            print('all_comments_mine')
+            pass
 
     # FIXME (task 5): select a new submission for the next iteration;
     # your newly selected submission should be randomly selected from the 5 hottest submissions
     # pass
-    submission = random.choice() #select 5 hottest submissions
+    submission = random.choice(list(reddit.subreddit("BotTown2").hot(limit=5))) #select 5 hottest submissions in subreddit
 
     # Use this as reference:
-    '''for submission in reddit.subreddit("BotTown").hot(time_filter='day', limit=5): # why top? use new, be a hero
-    print('score=', submission.score, 'title=', submission.title) # can change .title to .score
+    '''for submission in reddit.subreddit("BotTown").hot(time_filter='day', limit=5):
+        print('score=', submission.score, 'title=', submission.title) # can change .title to .score
 
     # use this link - https://praw.readthedocs.io/en/stable/index.html
     '''
@@ -227,4 +257,4 @@ if True: # change IF TO WHILE LATER
     # This doesn't avoid rate limiting
     # (since we're not sleeping for a long period of time),
     # but it does make the program's output more readable.
-    time.sleep(10) # set at 15-20 when actually running
+    time.sleep(36) # set at 60-75 when actually running
