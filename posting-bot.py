@@ -1,9 +1,9 @@
 import praw
 import random
-import datetime
 import time
+
 reddit = praw.Reddit('bot1')
-post = list(reddit.subreddit('NeutralPolitics').hot(limit = None)) #dankmemes
+post = list(reddit.subreddit('NeutralPolitics').hot(limit = 100)) #dankmemes
 for i in range(225):
     try:
         sub = random.choice(post)
@@ -24,5 +24,5 @@ for i in range(225):
     except praw.exceptions.InvalidURL:
         print('url not valid')
         pass
-    time.sleep(46) # keep short for testing, set back to 60-75 when running
+    time.sleep(46) # keep short for testing, set back to 46 when running
     
