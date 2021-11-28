@@ -6,8 +6,8 @@ import time
 # FIXME:
 # copy your generate_comment functions from the madlibs assignment here
 
-reddit = praw.Reddit('bot1')
-url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/"
+reddit = praw.Reddit('bot2')
+url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?sort=new&limit=500"
 submission = reddit.submission(url=url)
 
 
@@ -85,8 +85,6 @@ replacements = {
 
 all_sentences = [madlibs_1, madlibs_2, madlibs_3, madlibs_4, madlibs_5, madlibs_6]
 
-submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
-
 def generate_comment():
     '''
     This function generates random comments according to the patterns specified in the `madlibs` variable.
@@ -106,14 +104,12 @@ def generate_comment():
         s = s.replace('['+k+']', random.choice(replacements[k]))
     return s
 
-
 # connect to reddit 
 # reddit = praw.Reddit('bot1')
 
 # connect to the debate thread, but can change later
-# reddit_debate_url = 'https://old.reddit.com/r/BotTown/comments/qzbz12/test_text_postjust_ignore_for_somebottomtext/?'
+# reddit_debate_url = ''
 # submission = reddit.submission(url=reddit_debate_url)
-
 
 # each iteration of this loop will post a single comment;
 # since this loop runs forever, your bot will continue posting comments forever;
@@ -132,11 +128,20 @@ while True: # change IF TO WHILE LATER
     print('new iteration at:',datetime.datetime.now())
     print('submission.title=',submission.title)
     print('submission.url=',submission.url)
+    print('submission.author=', submission.author)
 
     # FIXME (task 0): get a list of all of the comments in the submission
     # HINT: this requires using the .list() and the .replace_more() functions
     # submission.comments.replace_more(limit=None)
+    initial_comments = submission.comments.list()
+    print('len(initial_comments)=', len(initial_comments))
+    if 'Main Discussion Thread' not in submission.title:
+        submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
+    else:
+        submission.comments.replace_more(limit=20)
+    # submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
     all_comments = submission.comments.list()
+
     # HINT: 
     # we need to make sure that our code is working correctly,
     # and you should not move on from one task to the next until you are 100% sure that 
@@ -203,22 +208,25 @@ while True: # change IF TO WHILE LATER
         # and then an if statement checks whether the comment is authored by you or not
         comments_without_replies = []
         for comment in not_my_comments:
-            not_replied = True
+            have_replied = False
             for reply in comment.replies:
                 try:
-                    if str(reply.author) == 'SomeBottomText':
-                        break
+                    if 'SomeBottomText' in str(reply.author):
+                        have_replied = True
+                    if have_replied == False:
+                        comments_without_replies.append(comment)
                 except NameError:
                     pass
                 except AttributeError:
                     pass
-            if not_replied:
-                comments_without_replies.append(comment)
-            
+
         # HINT:
         # this is the most difficult of the tasks,
         # and so you will have to be careful to check that this code is in fact working correctly
         print('len(comments_without_replies)=',len(comments_without_replies))
+        # print('highest_score_comment=', highest_score_comment)
+        # print('com_score=', com_score)
+
         # print('comments_without_replies=', comments_without_replies)
         # FIXME (task 4): randomly select a comment from the comments_without_replies list,
         # and reply to that comment
@@ -229,18 +237,24 @@ while True: # change IF TO WHILE LATER
         # these will not be top-level comments;
         # so they will not be replies to a post but replies to a message
         # pass
-        r = random.choice(comments_without_replies)
-        text = generate_comment()
-        # print(r)
         try:
-            r.reply(text)
-            print('I made a reply!')
-        except praw.exceptions.APIEXCEPTION:
-            print('Deleted comment - not replying')
-            pass
+            r = random.choice(comments_without_replies) # highest_score_comment
+            text = generate_comment()
+            # print(r)
+            try:
+                r.reply(text)
+                print('I made a reply!')
+            except praw.exceptions.APIEXCEPTION:
+                print('Deleted comment - not replying')
+                pass
+            except IndexError:
+                print('all comments mine')
+                pass
         except IndexError:
-            print('all_comments_mine')
+            print('all comments mine')
             pass
+
+
 
     # FIXME (task 5): select a new submission for the next iteration;
     # your newly selected submission should be randomly selected from the 5 hottest submissions
@@ -257,4 +271,4 @@ while True: # change IF TO WHILE LATER
     # This doesn't avoid rate limiting
     # (since we're not sleeping for a long period of time),
     # but it does make the program's output more readable.
-    time.sleep(36) # set at 60-75 when actually running
+    time.sleep(16) # set at 46 when actually running to avoid rate limit
