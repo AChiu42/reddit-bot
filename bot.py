@@ -7,7 +7,7 @@ import time
 # copy your generate_comment functions from the madlibs assignment here
 
 reddit = praw.Reddit('bot2')
-url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?sort=new&limit=500"
+url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?limit=500"
 submission = reddit.submission(url=url)
 
 
