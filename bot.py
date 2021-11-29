@@ -7,7 +7,7 @@ import time
 # copy your generate_comment functions from the madlibs assignment here
 
 reddit = praw.Reddit('bot1')
-url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?sort=new&limit=500"
+url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?limit=500"
 submission = reddit.submission(url=url)
 
 
@@ -58,7 +58,8 @@ replacements = {
     'WEALTH' : ['wealth', 'vast sums of money', 'tens of billions'],
     'SYMBOL' : ['Beacon of Hope', 'symbol of peace and power', 'role model'],
     'CLOWNS' : ['clowns', 'fools'],
-    'INEPT' : ['inept', 'useless', 'incapable'],
+    'INEPT' : ['inept', 'purposeless', 'incapable'],
+    'USELESS' : ['useless', 'clueless', 'worthless'],
     'AMERICANS' : ['Americans', 'the American people', 'the people of this country', 'the everyday person'],
     'REQUIRES' : ['requires', 'needs', 'is desperate for'],
     'IMMEDIATELY' : ['immediately', 'at this instant', 'right now', 'as soon as possible'],
