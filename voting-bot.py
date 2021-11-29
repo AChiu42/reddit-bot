@@ -77,15 +77,6 @@ for submission in list(reddit.subreddit("BotTown2").hot(limit=150)):
                         reply.downvote()
                         comment_downvotes += 1
                         # print('bad comment')
-                if 'Bernie' not in reply.body or 'Sanders' not in reply.body or 'Bernie Sanders' not in reply.body:
-                    if sentiments <= 0:
-                        reply.upvote()
-                        comment_upvotes += 1
-                        # print('good comment')
-                    if sentiments > 0:
-                        reply.downvote()
-                        comment_downvotes += 1
-                        # print('bad comment')
                 if 'Trump' in reply.body or 'Biden' in reply.body or 'Putin' in reply.body or 'GOP in submission.title':
                     if sentiments <= 0:
                         reply.upvote()
