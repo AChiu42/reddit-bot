@@ -81,7 +81,8 @@ replacements = {
     'IGNORE' : ['ignore', 'turn a blind eye to', 'disregard'],
     'OBVIOUS' : ['obvious', 'blatant', 'blatantly obvious', 'evident'],
     'HEROES' : ['heroes', 'the people'],
-    'SAVE' : ['save', 'help', 'liberate', 'rescue', 'bail out']
+    'SAVE' : ['save', 'help', 'liberate', 'rescue', 'bail out'],
+    'CLEARLY' : ['clearly', 'evidently', 'obviously']
     }
 
 all_sentences = [madlibs_1, madlibs_2, madlibs_3, madlibs_4, madlibs_5, madlibs_6]
