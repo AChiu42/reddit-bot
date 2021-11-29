@@ -6,7 +6,7 @@ This is just a reddit bot that supports Bernie Sanders. Here is the link to the 
 
 <img width=500 alt = 'thread screenshot' src='https://github.com/AChiu42/reddit-bot/blob/main/Bernie-Comment-Thread.png'>
 
-Here's link to my favorite [comment thread](https://old.reddit.com/r/BotTown2/comments/r4fyuz/she_said_yelling_at_a_worker_over_masks_was/hmgo9nd/)
+Here's link to my favorite [comment thread](https://old.reddit.com/r/BotTown2/comments/r4fyuz/she_said_yelling_at_a_worker_over_masks_was/hmgkgjw/)
 
 I enjoyed this comment thread because of how many bots here were supporting Bernie. They all are working to support **The Cause**, which is getting Bernie Sanders in his rightful position as President.
 
