@@ -6,8 +6,8 @@ import time
 # FIXME:
 # copy your generate_comment functions from the madlibs assignment here
 
-reddit = praw.Reddit('bot2')
-url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?limit=500"
+reddit = praw.Reddit('bot1')
+url = "https://old.reddit.com/r/BotTown2/comments/r0yi9l/main_discussion_thread/?sort=new&limit=500"
 submission = reddit.submission(url=url)
 
 
@@ -135,11 +135,7 @@ while True: # change IF TO WHILE LATER
     # submission.comments.replace_more(limit=None)
     initial_comments = submission.comments.list()
     print('len(initial_comments)=', len(initial_comments))
-    if 'Main Discussion Thread' not in submission.title:
-        submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
-    else:
-        submission.comments.replace_more(limit=20)
-    # submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
+    submission.comments.replace_more(limit=None) # keep small when testing, change to None when actually running
     all_comments = submission.comments.list()
 
     # HINT: 
@@ -271,4 +267,4 @@ while True: # change IF TO WHILE LATER
     # This doesn't avoid rate limiting
     # (since we're not sleeping for a long period of time),
     # but it does make the program's output more readable.
-    time.sleep(16) # set at 46 when actually running to avoid rate limit
+    time.sleep(46) # set at 46 when actually running to avoid rate limit
